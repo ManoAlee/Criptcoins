@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Facial - Galaxy Bitcoin System</title>
+    <style>
+        body { background: #222; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; }
+        .container { margin: 60px auto; max-width: 400px; background: #333; border-radius: 16px; padding: 32px; box-shadow: 0 8px 32px #0008; }
+        video { border-radius: 12px; width: 100%; max-width: 320px; margin-bottom: 16px; }
+        button { padding: 12px 32px; border-radius: 8px; border: none; background: #00d4ff; color: #222; font-weight: bold; font-size: 1.1em; cursor: pointer; }
+        .msg { margin: 16px 0; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔒 Login Facial</h2>
+        <video id="video" autoplay playsinline></video>
+        <div class="msg" id="msg">Aponte seu rosto para a câmera e clique em "Entrar"</div>
+        <button onclick="loginFace()">Entrar</button>
+    </div>
+    <script>
+        const video = document.getElementById('video');
+        const msg = document.getElementById('msg');
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => { video.srcObject = stream; })
+            .catch(() => { msg.textContent = 'Não foi possível acessar a câmera.'; });
+        function loginFace() {
+            msg.textContent = 'Processando...';
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+            canvas.toBlob(blob => {
+                const form = new FormData();
+                form.append('image', blob, 'face.png');
+                fetch('/api/login_face', { method: 'POST', body: form })
+                    .then(r => r.json())
+                    .then(data => {
+                        if (data.success) {
+                            msg.textContent = 'Bem-vindo, ' + data.user + '! Redirecionando...';
+                            setTimeout(() => { window.location.href = '/'; }, 1200);
+                        } else {
+                            msg.textContent = data.message || 'Rosto não reconhecido.';
+                        }
+                    })
+                    .catch(() => { msg.textContent = 'Erro ao autenticar.'; });
+            }, 'image/png');
+        }
+    </script>
+</body>
+</html>

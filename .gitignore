@@ -1,98 +1,27 @@
 # Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# Virtual Environment
-.venv/
-venv/
-env/
-ENV/
-env.bak/
-venv.bak/
-
-# IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-
-# Project Specific
-*.log
-*.enc
-*.npz
-face_db/
-derived_wallet.json
-biometric_secret.enc
-biometric_meta.json
-captured_image.enc
-face_curvature.png
-gauss_curvature.npy
-gauss_curvature.png
-wallet.json
-blockchain_data/
-*.key
-*.pem
-
-# Temporary files
-*.tmp
-temp/
-.temp/
-
-# OS Files
-Thumbs.db
-desktop.ini
-
-# API Keys & Secrets (NEVER COMMIT THESE!)
+*.pyc
+*.pyo
+*.pyd
+*.env
 .env
-.env.local
-secrets.json
-config_local.py
-api_keys.txt
+.venv
+venv/
+ENV/
 
-# Database
-*.db
-*.sqlite
+# VSCode/Visual Studio
+.vscode/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Outros
+face_db/
+*.log
 *.sqlite3
-
-# Cache
-.cache/
-*.cache
-.pytest_cache/
-
-# Coverage
-htmlcov/
-.coverage
-.coverage.*
-coverage.xml
-*.cover
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# pyenv
-.python-version
-
-# Node (if using)
-node_modules/
-package-lock.json

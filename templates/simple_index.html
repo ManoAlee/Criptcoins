@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌌 Galaxy Bitcoin System - Professional Trading Platform</title>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,20 +20,23 @@
         }
 
         :root {
-            --primary: #667eea;
-            --secondary: #764ba2;
-            --success: #2ecc71;
-            --danger: #e74c3c;
-            --warning: #f39c12;
-            --dark: #1a1a2e;
-            --darker: #16213e;
-            --light: #f8f9fa;
-            --accent: #00d4ff;
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --accent: #ff00c8;
+            --bg: #03050a;
+            --glass: rgba(10, 15, 30, 0.7);
+            --border: rgba(255, 255, 255, 0.1);
+            --success: #00ff88;
+            --danger: #ff4d4d;
+            --warning: #ffcc00;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(112, 0, 255, 0.1) 0%, transparent 40%);
             color: #fff;
             min-height: 100vh;
             overflow-x: hidden;
@@ -42,15 +51,22 @@
             width: 100%;
             height: 100%;
             background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
             animation: backgroundPulse 15s ease-in-out infinite;
             pointer-events: none;
             z-index: 0;
         }
 
         @keyframes backgroundPulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
         .container {
@@ -64,13 +80,13 @@
         /* Header */
         header {
             text-align: center;
-            padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 20px;
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            border-radius: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
         }
 
         h1 {
@@ -84,8 +100,15 @@
         }
 
         @keyframes titleGlow {
-            0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5)); }
-            50% { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.8)); }
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.8));
+            }
         }
 
         .subtitle {
@@ -132,8 +155,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(0, 212, 255, 0); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 10px rgba(0, 212, 255, 0);
+            }
         }
 
         .status-dot {
@@ -145,8 +175,15 @@
         }
 
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
         }
 
         /* Grid Layout */
@@ -163,13 +200,13 @@
 
         /* Card Component */
         .card {
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--glass);
             backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
         }
@@ -238,7 +275,7 @@
             left: 0;
             right: 0;
             padding: 20px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -252,12 +289,12 @@
         }
 
         .info-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 16px;
             text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .info-box:hover {
@@ -341,7 +378,8 @@
         }
 
         /* Input Fields */
-        input, select {
+        input,
+        select {
             width: 100%;
             padding: 12px;
             background: rgba(255, 255, 255, 0.1);
@@ -353,7 +391,8 @@
             transition: all 0.3s ease;
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             outline: none;
             border-color: var(--accent);
             background: rgba(255, 255, 255, 0.15);
@@ -424,7 +463,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Toast Notifications */
@@ -446,6 +487,7 @@
                 transform: translateX(400px);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -496,15 +538,81 @@
             height: 300px;
             margin-top: 20px;
         }
+
+        /* Abstract Background Elements */
+        .orb {
+            position: fixed;
+            top: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            filter: blur(120px);
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 25s infinite alternate;
+            pointer-events: none;
+        }
+
+        .orb-2 {
+            position: fixed;
+            bottom: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            filter: blur(100px);
+            opacity: 0.05;
+            z-index: -1;
+            animation: float 20s infinite alternate-reverse;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(-30px, -30px);
+            }
+
+            100% {
+                transform: translate(30px, 30px);
+            }
+        }
     </style>
 </head>
+
 <body>
+    <div class="orb"></div>
+    <div class="orb-2"></div>
     <div class="container">
         <!-- Header -->
         <header>
-            <h1>🌌 GALAXY BITCOIN SYSTEM</h1>
-            <p class="subtitle">Professional Trading Platform with AI & Biometric Security</p>
-            
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+                <div style="text-align: left;">
+                    <h1>🌌 GALAXY BITCOIN SYSTEM</h1>
+                    <p class="subtitle">Professional Trading Platform with AI & Biometric Security</p>
+                </div>
+                <div
+                    style="text-align: right; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 20px; border: 1px solid var(--border); backdrop-filter: blur(10px);">
+                    <div
+                        style="font-size: 0.8rem; opacity: 0.6; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">
+                        Access Level: Verified</div>
+                    <div
+                        style="font-size: 1.2rem; font-weight: 600; color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
+                        <span
+                            style="width: 8px; height: 8px; background: var(--success); border-radius: 50%; display: inline-block; box-shadow: 0 0 10px var(--success);"></span>
+                        👤 {{ user }}
+                    </div>
+                    <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                        <a href="/face/enroll" class="btn btn-primary"
+                            style="padding: 10px 18px; font-size: 0.85rem; background: linear-gradient(45deg, var(--secondary), var(--primary)); border: none;">✚
+                            REGISTER NODE</a>
+                        <a href="/logout" class="btn btn-danger"
+                            style="padding: 10px 18px; font-size: 0.85rem; background: rgba(255, 77, 77, 0.1); border: 1px solid var(--danger); color: var(--danger);">🔒
+                            LOGOUT</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="status-bar">
                 <div class="status-item online">
                     <span class="status-dot"></span>
@@ -517,6 +625,10 @@
                 <div class="status-item" id="camera-status">
                     <span class="status-dot"></span>
                     <span>Camera Initializing...</span>
+                </div>
+                <div class="status-item active" id="enzyme-status" style="border-color: #ff00c8;">
+                    <span class="status-dot" style="background: #ff00c8; box-shadow: 0 0 10px #ff00c8;"></span>
+                    <span>Enzyme Activity: Catalyst active</span>
                 </div>
                 <div class="status-item" id="btc-price-badge">
                     <span>₿</span>
@@ -536,10 +648,14 @@
                     </button>
                 </div>
                 <div id="video-container">
+                    <div class="molecular-aura"></div>
                     <img id="camera-feed" src="/video_feed" alt="Camera Feed">
                     <div class="video-overlay">
-                        <span id="face-status">👤 Detecting...</span>
-                        <span id="user-display">Guest</span>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <span id="face-status" style="font-weight: 600;">👤 Resonating Nucleus...</span>
+                            <span id="user-display"
+                                style="font-size: 1.2rem; color: var(--primary); text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);">Guest</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -612,15 +728,15 @@
                     <select id="tx-sender" required>
                         <option value="">Select Wallet...</option>
                     </select>
-                    
+
                     <label style="opacity: 0.8; margin-bottom: 5px; display: block;">To:</label>
                     <select id="tx-recipient" required>
                         <option value="">Select Recipient...</option>
                     </select>
-                    
+
                     <label style="opacity: 0.8; margin-bottom: 5px; display: block;">Amount (₿):</label>
                     <input type="number" id="tx-amount" step="0.00000001" min="0" placeholder="0.00000000" required>
-                    
+
                     <button type="submit" class="btn btn-success" style="width: 100%;">
                         ✅ Send Transaction
                     </button>
@@ -643,43 +759,56 @@
     </div>
 
     <script>
+        // Atualiza o preço do Bitcoin na interface
+        function updateBitcoinPrice(price) {
+            if (!price) return;
+            const el = document.getElementById('btc-price');
+            if (el) {
+                el.textContent = `$${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            }
+            const badge = document.getElementById('btc-price-badge');
+            if (badge) {
+                badge.innerHTML = `<span>₿</span><span>$${Number(price).toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>`;
+            }
+        }
+
         // Socket.IO Connection
         const socket = io();
-        
+
         let updateInterval;
-        
+
         socket.on('connect', () => {
             console.log('✅ Connected to server');
             addActivity('🔌 Connected to server', 'success');
         });
-        
+
         socket.on('price_update', (data) => {
             updateBitcoinPrice(data.price);
         });
-        
+
         socket.on('transaction_created', (data) => {
             addActivity(`💸 Transaction: ${data.amount} ₿`, 'info');
             loadData();
         });
-        
+
         socket.on('block_mined', (data) => {
             addActivity(`⛏️ Block #${data.block_number} mined!`, 'success');
             showToast(`✅ Block mined successfully!`);
             loadData();
         });
-        
+
         // Load initial data
         async function loadData() {
             try {
                 // Load status
                 const statusRes = await fetch('/api/status');
                 const status = await statusRes.json();
-                
+
                 document.getElementById('block-count').textContent = status.blockchain.blocks;
                 document.getElementById('pending-tx').textContent = status.blockchain.pending_tx;
                 document.getElementById('difficulty').textContent = status.blockchain.difficulty;
                 document.getElementById('user-display').textContent = status.user;
-                
+
                 // Update camera status
                 const cameraStatus = document.getElementById('camera-status');
                 if (status.face_detected) {
@@ -691,19 +820,19 @@
                     cameraStatus.innerHTML = '<span class="status-dot"></span><span>📷 No Face</span>';
                     document.getElementById('face-status').textContent = '⏳ Detecting...';
                 }
-                
+
                 // Load wallets
                 const walletsRes = await fetch('/api/wallets');
                 const wallets = await walletsRes.json();
-                
+
                 const walletList = document.getElementById('wallet-list');
                 const txSender = document.getElementById('tx-sender');
                 const txRecipient = document.getElementById('tx-recipient');
-                
+
                 walletList.innerHTML = '';
                 txSender.innerHTML = '<option value="">Select Wallet...</option>';
                 txRecipient.innerHTML = '<option value="">Select Recipient...</option>';
-                
+
                 for (const [name, wallet] of Object.entries(wallets)) {
                     walletList.innerHTML += `
                         <div class="transaction-item">
@@ -716,63 +845,63 @@
                             </div>
                         </div>
                     `;
-                    
+
                     txSender.innerHTML += `<option value="${name}">${name} (${wallet.balance.toFixed(2)} ₿)</option>`;
                     txRecipient.innerHTML += `<option value="${name}">${name}</option>`;
                 }
-                
+
                 // Load Bitcoin price
                 try {
                     const priceRes = await fetch('/api/bitcoin/price');
                     const priceData = await priceRes.json();
-                    
+
                     if (priceData.price_usd) {
-                        document.getElementById('btc-price').textContent = `$${priceData.price_usd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                        document.getElementById('btc-price').textContent = `$${priceData.price_usd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
                         document.getElementById('btc-high').textContent = `$${priceData.high_24h.toLocaleString()}`;
                         document.getElementById('btc-low').textContent = `$${priceData.low_24h.toLocaleString()}`;
-                        
+
                         const change = priceData.change_24h;
                         const changeEl = document.getElementById('btc-change');
                         changeEl.textContent = `${change > 0 ? '+' : ''}${change.toFixed(2)}% (24h)`;
                         changeEl.className = `price-change ${change > 0 ? 'positive' : 'negative'}`;
-                        
-                        document.getElementById('btc-price-badge').innerHTML = `<span>₿</span><span>$${priceData.price_usd.toLocaleString('en-US', {maximumFractionDigits: 0})}</span>`;
+
+                        document.getElementById('btc-price-badge').innerHTML = `<span>₿</span><span>$${priceData.price_usd.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>`;
                     }
                 } catch (e) {
                     console.warn('Bitcoin API not available');
                 }
-                
+
             } catch (error) {
                 console.error('Error loading data:', error);
             }
         }
-        
+
         async function createTransaction(e) {
             e.preventDefault();
-            
+
             const sender = document.getElementById('tx-sender').value;
             const recipient = document.getElementById('tx-recipient').value;
             const amount = parseFloat(document.getElementById('tx-amount').value);
-            
+
             if (!sender || !recipient || amount <= 0) {
                 showToast('❌ Please fill all fields correctly');
                 return;
             }
-            
+
             if (sender === recipient) {
                 showToast('❌ Cannot send to same wallet');
                 return;
             }
-            
+
             try {
                 const res = await fetch('/api/transaction', {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({sender, recipient, amount})
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sender, recipient, amount })
                 });
-                
+
                 const data = await res.json();
-                
+
                 if (data.success) {
                     showToast('✅ Transaction created successfully!');
                     document.getElementById('tx-amount').value = '';
@@ -785,21 +914,21 @@
                 console.error(error);
             }
         }
-        
+
         async function mineBlock() {
             const btn = event.target;
             btn.disabled = true;
             btn.innerHTML = '<span class="loading"></span> Mining...';
-            
+
             try {
                 const res = await fetch('/api/mine', {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({miner: 'Miner'})
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ miner: 'Miner' })
                 });
-                
+
                 const data = await res.json();
-                
+
                 if (data.success) {
                     addActivity('⛏️ Mining started...', 'info');
                 }
@@ -813,69 +942,70 @@
                 }, 2000);
             }
         }
-        
+
         function refreshCamera() {
             const feed = document.getElementById('camera-feed');
             feed.src = '/video_feed?' + new Date().getTime();
             showToast('🔄 Camera refreshed');
         }
-        
+
         function addActivity(message, type = 'info') {
             const log = document.getElementById('activity-log');
             const time = new Date().toLocaleTimeString();
-            
+
             const item = document.createElement('div');
             item.className = 'transaction-item';
             item.innerHTML = `<span>${message}</span><span style="opacity: 0.7;">${time}</span>`;
-            
+
             log.insertBefore(item, log.firstChild);
-            
+
             // Keep only last 10 items
             while (log.children.length > 10) {
                 log.removeChild(log.lastChild);
             }
         }
-        
+
         function showToast(message) {
             const toast = document.createElement('div');
             toast.className = 'toast';
             toast.textContent = message;
             document.body.appendChild(toast);
-            
+
             setTimeout(() => {
                 toast.style.animation = 'slideIn 0.3s ease reverse';
                 setTimeout(() => toast.remove(), 300);
             }, 3000);
         }
-        
+
         function showCreateWallet() {
             const name = prompt('Enter wallet name:');
             if (name) {
                 fetch('/api/wallet/create', {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({name})
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name })
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        showToast('✅ Wallet created!');
-                        loadData();
-                    } else {
-                        showToast(`❌ ${data.message}`);
-                    }
-                });
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            showToast('✅ Wallet created!');
+                            loadData();
+                        } else {
+                            showToast(`❌ ${data.message}`);
+                        }
+                    });
             }
         }
-        
+
         // Initialize
         loadData();
         updateInterval = setInterval(loadData, 5000);
-        
+
         // Cleanup
         window.addEventListener('beforeunload', () => {
             clearInterval(updateInterval);
         });
     </script>
 </body>
+
 </html>

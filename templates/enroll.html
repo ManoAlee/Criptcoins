@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Registration | Criptcoins</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>">
+    <style>
+        :root {
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --accent: #ff00c8;
+            --bg: #03050a;
+            --glass: rgba(10, 15, 30, 0.7);
+            --border: rgba(0, 242, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(112, 0, 255, 0.1) 0%, transparent 40%);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8);
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .input-group input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .alert-success {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+        }
+
+        .alert-error {
+            background: rgba(255, 77, 77, 0.1);
+            border: 1px solid #ff4d4d;
+            color: #ff4d4d;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 30px rgba(112, 0, 255, 0.4);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(112, 0, 255, 0.6);
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.6;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>RESONANCE COMPONENT Ψ</h1>
+            <p style="opacity: 0.5; font-size: 0.9rem; margin-top: 5px;">Synchronizing Topological DNA (Seed)</p>
+        </div>
+
+        {% if message %}
+        <div class="alert {% if success %}alert-success{% else %}alert-error{% endif %}" style="display: block;">
+            {{ message }}
+        </div>
+        {% endif %}
+
+        <div class="camera-container" id="camera-box"
+            style="display: none; position: relative; width: 280px; height: 280px; margin: 0 auto 30px; border-radius: 50%; overflow: hidden; border: 2px solid var(--border); background: #000; box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);">
+            <video id="video" autoplay playsinline muted style="width: 100%; height: 100%; object-fit: cover;"></video>
+            <div class="scanner-line" id="scanner"></div>
+        </div>
+
+        <div id="step-1">
+            <div class="input-group">
+                <label>Unique Identity Key (Username)</label>
+                <input type="text" id="username" placeholder="Enter your identity tag..." required autocomplete="off">
+            </div>
+            <button class="btn-submit" onclick="startCapture()">INITIALIZE BIOMETRIC NUCLEUS</button>
+        </div>
+
+        <div id="step-2" style="display: none; text-align: center;">
+            <!-- Guia de Ângulo -->
+            <div id="angle-guide" style="margin-bottom: 20px;">
+                <div id="angle-icon" style="font-size: 3rem; margin-bottom: 10px;">👤</div>
+                <div id="angle-instruction" style="font-size: 1.2rem; font-weight: 600; color: var(--primary);">
+                    Frontal Resilience
+                </div>
+                <div id="angle-subtext" style="opacity: 0.6; font-size: 0.85rem;">
+                    Look directly into the sensor
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div
+                style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 30px; overflow: hidden;">
+                <div id="sync-progress"
+                    style="width: 0%; height: 100%; background: var(--primary); transition: width 0.3s ease;"></div>
+            </div>
+
+            <button class="btn-submit" id="enroll-btn" onclick="captureNextAngle()">CAPTURE ANGLE <span
+                    id="angle-count">1</span>/5</button>
+
+            <button class="back-link"
+                style="background: none; border: none; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; margin-top: 15px;"
+                onclick="location.reload()">Reset Sensor</button>
+        </div>
+
+        <div class="info-card">
+            <strong>Ψ Premium Protocol:</strong> 5-angle manifold mapping ensures 100% identity fidelity and
+            anti-spoofing resilience.
+        </div>
+
+        <a href="/" class="back-link">← Return to Gateway</a>
+    </div>
+
+    <style>
+        .scanner-line {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+            z-index: 10;
+            animation: scan 3s ease-in-out infinite;
+            display: none;
+        }
+
+        @keyframes scan {
+
+            0%,
+            100% {
+                top: 20%;
+                opacity: 0;
+            }
+
+            50% {
+                top: 80%;
+                opacity: 1;
+            }
+        }
+
+        .scanning .scanner-line {
+            display: block;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(0, 242, 255, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 242, 255, 0);
+            }
+        }
+
+        .camera-active {
+            animation: pulse 2s infinite;
+            border-color: var(--primary) !important;
+        }
+
+        /* Feedback visual de captura */
+        .flash {
+            animation: flash-anim 0.5s ease-out;
+        }
+
+        @keyframes flash-anim {
+            0% {
+                background: white;
+                opacity: 1;
+            }
+
+            100% {
+                background: transparent;
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <script>
+        const video = document.getElementById('video');
+        const cameraBox = document.getElementById('camera-box');
+        const usernameInput = document.getElementById('username');
+        const statusText = document.getElementById('capture-status');
+        const enrollBtn = document.getElementById('enroll-btn');
+        const progress = document.getElementById('sync-progress');
+        const angleIcon = document.getElementById('angle-icon');
+        const angleInstr = document.getElementById('angle-instruction');
+        const angleSub = document.getElementById('angle-subtext');
+        const angleCount = document.getElementById('angle-count');
+
+        let capturedAngles = [];
+        const tutorialSteps = [
+            { icon: "👤", title: "Frontal Resilience", sub: "Look directly into the sensor" },
+            { icon: "↪️", title: "Right Helix", sub: "Turn your face to the RIGHT" },
+            { icon: "↩️", title: "Left Helix", sub: "Turn your face to the LEFT" },
+            { icon: "⬆️", title: "Zenith Tilt", sub: "Look UPwards" },
+            { icon: "⬇️", title: "Nadir Tilt", sub: "Look DOWNwards" }
+        ];
+
+        async function startCapture() {
+            const username = usernameInput.value.trim();
+            if (!username) {
+                alert("Please enter a username.");
+                return;
+            }
+
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'user', width: 640, height: 480 }
+                });
+                video.srcObject = stream;
+
+                document.getElementById('step-1').style.display = 'none';
+                document.getElementById('step-2').style.display = 'block';
+                cameraBox.style.display = 'block';
+                cameraBox.classList.add('camera-active');
+            } catch (err) {
+                alert("Camera access denied or secure context missing.");
+            }
+        }
+
+        function captureNextAngle() {
+            const currentStep = capturedAngles.length;
+
+            // Visual Flash
+            const flash = document.createElement('div');
+            flash.style.position = 'absolute';
+            flash.style.top = '0';
+            flash.style.left = '0';
+            flash.style.width = '100%';
+            flash.style.height = '100%';
+            flash.classList.add('flash');
+            cameraBox.appendChild(flash);
+            setTimeout(() => flash.remove(), 500);
+
+            // Capture
+            const canvas = document.createElement('canvas');
+            canvas.width = 320; // Aumentado para 320 para melhor detecção no backend
+            canvas.height = 320;
+            const ctx = canvas.getContext('2d');
+
+            // Centralizar e cortar 1:1
+            const size = Math.min(video.videoWidth, video.videoHeight);
+            const x = (video.videoWidth - size) / 2;
+            const y = (video.videoHeight - size) / 2;
+            ctx.drawImage(video, x, y, size, size, 0, 0, 320, 320);
+
+            canvas.toBlob((blob) => {
+                capturedAngles.push(blob);
+
+                // Update Progress
+                const p = (capturedAngles.length / 5) * 100;
+                progress.style.width = `${p}%`;
+
+                if (capturedAngles.length < 5) {
+                    // Next Tutorial Step
+                    const next = tutorialSteps[capturedAngles.length];
+                    angleIcon.textContent = next.icon;
+                    angleInstr.textContent = next.title;
+                    angleSub.textContent = next.sub;
+                    angleCount.textContent = capturedAngles.length + 1;
+                } else {
+                    // All angles captured - Final Sync
+                    finalizeSync();
+                }
+            }, 'image/png');
+        }
+
+        async function finalizeSync() {
+            const username = usernameInput.value.trim();
+
+            angleInstr.textContent = "SYNCHRONIZING MANIFOLD...";
+            angleSub.textContent = "Stabilizing Molecular DNA in the Nucleus";
+            enrollBtn.disabled = true;
+            enrollBtn.textContent = "SYNCING...";
+            cameraBox.classList.add('scanning');
+
+            const formData = new FormData();
+            formData.append('username', username);
+            capturedAngles.forEach((blob, i) => {
+                formData.append(`image_${i}`, blob, `angle_${i}.png`);
+            });
+
+            try {
+                const response = await fetch('/api/enroll_face', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    angleInstr.style.color = "#00ff88";
+                    angleInstr.textContent = "RESONANCE COMPLETED!";
+                    angleSub.textContent = data.message;
+
+                    setTimeout(() => {
+                        window.location.href = '/login';
+                    }, 2000);
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (err) {
+                alert("Sync Error: " + err.message);
+                location.reload(); // Reset on error
+            }
+        }
+    </script>
+    </div>
+</body>
+
+</html>
