@@ -1,0 +1,58 @@
+# 🌌 Galaxy Bitcoin System - Core Requirements
+# Dependências essenciais para funcionamento
+
+# ⚙️ Web Framework
+Flask>=2.3.0
+Flask-CORS>=4.0.0
+Flask-SocketIO>=5.3.0
+python-socketio>=5.9.0
+
+# ₿ Bitcoin & Blockchain
+ecdsa>=0.18.0
+base58>=2.1.1
+requests>=2.31.0
+websocket-client>=1.6.0
+
+# 🔐 Criptografia
+cryptography>=41.0.0
+PyJWT>=2.8.0
+
+# 🎥 Visão Computacional
+opencv-python>=4.8.0
+Pillow>=10.0.0
+numpy>=1.24.0
+
+# 📊 Data Science
+scipy>=1.11.0
+scikit-learn>=1.3.0
+
+# 🌐 Network
+networkx>=3.1
+aiohttp>=3.8.0
+
+# 🛠️ Utilitários
+python-dotenv>=1.0.0
+colorama>=0.4.6
+tqdm>=4.66.0
+
+# ⚡ Opcional - Instale se desejar recursos avançados
+# Descomente as linhas abaixo conforme necessário
+
+# 🎤 Audio & Speech Recognition (opcional - requer compilação)
+# SpeechRecognition>=3.10.0
+# pyttsx3>=2.90
+# pyaudio>=0.2.13  # NOTA: Requer VCPKG no Windows, use: pip install pipwin && pipwin install pyaudio
+
+# 📈 Visualização Avançada (opcional)
+# matplotlib>=3.7.0
+# plotly>=5.17.0
+# pandas>=2.0.0
+
+# 🗄️ Database (opcional)
+# SQLAlchemy>=2.0.0
+
+# 🧪 Testes & Qualidade (opcional)
+# pytest>=7.4.0
+# pytest-cov>=4.1.0
+# black>=23.7.0
+# flake8>=6.1.0

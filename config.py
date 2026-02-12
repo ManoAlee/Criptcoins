@@ -1,0 +1,86 @@
+# 🌌 Galaxy Bitcoin System Configuration
+
+# Environment
+DEBUG = False
+TESTING = False
+
+# Server Settings
+HOST = '0.0.0.0'
+PORT = 5000
+SECRET_KEY = 'your-secret-key-change-in-production'
+
+# Bitcoin API Settings
+BITCOIN_API_ENABLED = True
+BITCOIN_API_TIMEOUT = 10
+BITCOIN_WEBSOCKET_ENABLED = True
+
+# Blockchain Settings
+BLOCKCHAIN_DIFFICULTY = 2
+MINING_REWARD = 50.0
+HALVING_INTERVAL = 210000
+
+# Camera Settings
+CAMERA_ENABLED = True
+CAMERA_FPS = 30
+CAMERA_WIDTH = 640
+CAMERA_HEIGHT = 480
+CAMERA_BACKEND = 'auto'  # auto, dshow, msmf, v4l2
+
+# Face Recognition Settings
+FACE_CASCADE = 'haarcascade_frontalface_default.xml'
+FACE_DETECTION_SCALE = 1.1
+FACE_MIN_NEIGHBORS = 5
+FACE_MIN_SIZE = (30, 30)
+
+# Audio Settings
+AUDIO_ENABLED = True
+SPEECH_RECOGNITION_ENABLED = True
+SPEECH_LANGUAGE = 'pt-BR'
+
+# Security Settings
+REQUIRE_BIOMETRIC_AUTH = False
+ENCRYPTION_ALGORITHM = 'AES-256-GCM'
+KEY_DERIVATION_ITERATIONS = 200000
+
+# Database (optional)
+DATABASE_URI = 'sqlite:///galaxy_bitcoin.db'
+
+# Logging
+LOG_LEVEL = 'INFO'
+LOG_FILE = 'galaxy_bitcoin.log'
+LOG_MAX_BYTES = 10485760  # 10MB
+LOG_BACKUP_COUNT = 3
+
+# Trading Settings
+TRADING_ENABLED = True
+INITIAL_BALANCE_USD = 10000.0
+TRADING_FEE_PERCENT = 0.1
+
+# WebSocket Settings
+SOCKETIO_MESSAGE_QUEUE = None
+SOCKETIO_CHANNEL = 'galaxy-bitcoin'
+SOCKETIO_CORS_ALLOWED_ORIGINS = '*'
+
+# API Rate Limiting
+API_RATE_LIMIT = '100 per minute'
+API_RATE_LIMIT_STORAGE_URL = 'memory://'
+
+# Timeouts
+REQUEST_TIMEOUT = 30
+WEBSOCKET_TIMEOUT = 60
+CAMERA_TIMEOUT = 5
+
+# Paths
+FACE_DB_PATH = 'face_db'
+BLOCKCHAIN_DATA_PATH = 'blockchain_data'
+WALLET_PATH = 'wallets'
+TEMP_PATH = 'temp'
+
+# Features Flags
+FEATURE_VOICE_COMMANDS = True
+FEATURE_BIOMETRIC_AUTH = True
+FEATURE_REAL_BITCOIN_API = True
+FEATURE_TRADING_ENGINE = True
+FEATURE_ADVANCED_CHARTS = True
+FEATURE_WEBSOCKET_LIVE = True
+FEATURE_AI_ANALYSIS = True
