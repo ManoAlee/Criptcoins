@@ -23,7 +23,7 @@ The identification engine uses a 5-step **Manifold Projection** (Front, Helix R/
 
 ## 🏗️ Technical Soul
 
-For a deep dive into the engineering, see [**ARCHITECTURE_GALAXY.md**](file:///c:/Users/alessandro.meneses.Automotion/source/repos/ManoAlee/Criptcoins/ARCHITECTURE_GALAXY.md).
+For a deep dive into the engineering, see [**ARCHITECTURE_GALAXY.md**](file:///c:/Users/developer/source/repos/ManoAlee/Criptcoins/ARCHITECTURE_GALAXY.md).
 
 ```bash
 # 📡 Client-Server Vision Boundary

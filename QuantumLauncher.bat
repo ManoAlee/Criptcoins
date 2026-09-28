@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 
 :: --- CONFIGURATION ---
 set "PORT=5000"
-set "IP=10.0.0.18"
+set "IP=192.168.1.18"
 set "URL=http://!IP!:!PORT!"
 
 echo 🌌 GALAXY BITCOIN SYSTEM - QUANTUM LAUNCHER
